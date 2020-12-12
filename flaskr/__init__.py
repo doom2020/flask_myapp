@@ -1,27 +1,20 @@
 import os
 from flask import Flask
+from .main.views import index
+from .login.views import login
+from .logout.views import logout
+from .register.views import register
 
-def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY = 'dev',
-        DATABASE = os.path.join(app.instance_path, 'flaskr.sqlite'),
-    )
-
-    if not test_config:
-        # 从'config.py'获取配置信息
-        app.config.from_pyfile('config.py', silent=True)
+def create_app():
+    app = Flask(__name__)
+    DEBUG = True
+    if DEBUG:
+        app.config.from_object('settings.DevelopmentConfig')
     else:
-        app.config.from_mapping(test_config)
+        app.config.from_object('settings.ProductionConfig')
 
-    try:
-        # 保证instance目录存在
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
-
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-    
+    app.register_blueprint(index, url_prefix='/api')
+    app.register_blueprint(login, url_prefix='/api')
+    app.register_blueprint(logout, url_prefix='/api')
+    app.register_blueprint(register, url_prefix='/api')
     return app
