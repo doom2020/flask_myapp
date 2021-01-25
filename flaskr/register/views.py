@@ -3,7 +3,7 @@ from flask import Blueprint
 register = Blueprint('register_api', __name__)
 
 @register.before_request
-class BeforeRequestHandler(object):
+def before_request_handler():
     pass
 
 @register.route('/register', methods=['GET'], endpoint='register_g')
