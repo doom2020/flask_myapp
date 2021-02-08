@@ -1,14 +1,18 @@
-import os
 from flask import Flask
 from .main.views import index
 from .login.views import login
 from .logout.views import logout
 from .register.views import register
 from .movie.views import movie
+from flask_sqlalchemy import SQLAlchemy
+
+DEBUG = True
+db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    DEBUG = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123456@localhost/flaskapp'
+    db.init_app(app)
     if DEBUG:
         app.config.from_object('settings.DevelopmentConfig')
     else:

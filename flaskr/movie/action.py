@@ -1,6 +1,6 @@
 import requests
-import os
 import re
+
 
 class HandlerGetMovies(object):
     """
@@ -38,6 +38,6 @@ class HandlerGetMovies(object):
         pattern2 = re.compile(r'<li.*?data-title="(.*?)".*?data-score="(.*?)".*?data-star="(.*?)".*?data-release="(.*?)".*?data-duration="(.*?)".*?data-region="(.*?)".*?data-director="(.*?)".*?data-actors="(.*?)".*?data-category="(.*?)".*?<li class="poster">.*?<a href="(.*?)".*?src="(.*?)".*?</a>', re.S)
         # 获取所有热映的影片信息
         result_list2 = re.findall(pattern2, result_list[0])
-        print(result_list2) # 还要提取详情页面的图片和剧情简介
+        print(result_list2)  # 还要提取详情页面的图片和剧情简介
 
 
