@@ -11,8 +11,8 @@ class UserInfo(db.Model):
     u_time = db.Column(db.DateTime, nullable=False)
     is_delete = db.Column(db.Boolean, default=0, nullable=False)
 
-    def __str__(self):
-        return self.username
+    # def __str__(self):
+    #     return self.username
 
 
 class SessionInfo(db.Model):
@@ -22,8 +22,8 @@ class SessionInfo(db.Model):
     username = db.Column(db.String(100), unique=True, nullable=False)
     c_time = db.Column(db.DateTime, nullable=False)
 
-    def __str__(self):
-        return self.session_id
+    # def __str__(self):
+    #     return self.session_id
 
 
 

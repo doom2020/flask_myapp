@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import pymysql
 pymysql.install_as_MySQLdb()
@@ -14,6 +15,7 @@ def create_app():
     else:
         app.config.from_object('settings.ProductionConfig')
     db.init_app(app)
+    CORS(app, supports_credentials=True)
     # 引入相关模块
     from .main.views import index
     from .login.views import login
