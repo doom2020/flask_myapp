@@ -15,7 +15,7 @@ def create_app():
     else:
         app.config.from_object('settings.ProductionConfig')
     db.init_app(app)
-    CORS(app, supports_credentials=True)
+    CORS(app, supports_credentials=True)  # 支持跨域请求
     # 引入相关模块
     from .main.views import index
     from .login.views import login
